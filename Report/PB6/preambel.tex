@@ -1,0 +1,63 @@
+
+\usepackage[german]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc} %Umlaute
+\usepackage{lmodern}
+\usepackage[top=2cm, left=3cm, bottom=2cm, right=4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings} 
+\usepackage{multirow}
+\usepackage{color}		 % für Farben im allgemeinen
+\usepackage{colortbl}
+\usepackage{cite}
+%\bibliographystyle{gig}
+\usepackage{bibgerm}
+\usepackage{palatino}
+\usepackage{chngpage}
+\renewcommand{\floatpagefraction}{0.85}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+\fancyhf{}
+\fancyhead[RE]{\slshape \nouppercase{\leftmark}}    % Even page header: "page   chapter"
+\fancyhead[LO]{\slshape \nouppercase{\rightmark}}   % Odd  page header: "section   page"
+\fancyhead[RO,LE]{\bfseries \thepage} 
+\renewcommand{\headrulewidth}{1pt}    % Underline headers
+\renewcommand{\footrulewidth}{0pt}    
+
+\fancypagestyle{plain}{               % No chapter+section on chapter start pages
+\fancyhf{}
+\fancyhead[RO,LE]{\bfseries \thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+% Left headings: "1  INTRODUCTION"
+%\renewcommand{\chaptermark}[1]{%
+%\markboth{\thechapter\ \ \ \ #1}{}}
+
+% Right headings: "1.1  Basics"
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection\ \ \ \ #1}{}}
+
+\lstset{language=java} 
+\lstset{basicstyle=\scriptsize}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=2pt, breaklines=true} 
+\graphicspath{{Bilder/}}
+\newcommand{\listoflolentryname}{\lstlistingname} 
+%\newcommand{\fullcite}{\citep} %for "Author [1980]"
+\usepackage[pdftex,plainpages=false,pdfpagelabels]{hyperref}
+% --- Farbdefinitionen ----------------------------------------
+\definecolor{rot}{rgb}{1,0.3,0}
+\definecolor{gelb}{rgb}{1,1,0}
+\definecolor{gruen}{rgb}{0,1,0.4}
+\definecolor{darkblue}{rgb}{0.2,0.3,1}
+\definecolor{lightblue}{rgb}{0.6,0.7,1}
+\definecolor{white}{rgb}{1,1,1}
+
+\linespread{1.5}
+
+\bibliographystyle{geralpha}
