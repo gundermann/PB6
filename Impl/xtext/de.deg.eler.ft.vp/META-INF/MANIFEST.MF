@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.deg.eler.ft.vp
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.deg.eler.ft.vp; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: de.deg.eler.ft.vp,
+ de.deg.eler.ft.vp.services,
+ de.deg.eler.ft.vp.dsl,
+ de.deg.eler.ft.vp.dsl.impl,
+ de.deg.eler.ft.vp.dsl.util,
+ de.deg.eler.ft.vp.serializer,
+ de.deg.eler.ft.vp.parser.antlr,
+ de.deg.eler.ft.vp.parser.antlr.internal,
+ de.deg.eler.ft.vp.validation,
+ de.deg.eler.ft.vp.scoping,
+ de.deg.eler.ft.vp.generator,
+ de.deg.eler.ft.vp.formatting
