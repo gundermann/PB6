@@ -1,4 +1,11 @@
 \section{Grundlegende Begriffe}
+In Kapitel \ref{GP} wird Bezug auf die Begriffe
+\emph{Geschäftsprozess (Prozess)} und \emph{Workflow genommen}. Aus diesem Grund
+wird hier eine Abgrenzung zwischen den beiden Begriffen vorgenommen. Weiterhin
+werden in Kapitel \ref{Analyse der Arbeitserleichterung} die Begriffe
+\emph{Syntax} und \emph{Semantik} verwendet. Wie diese Begriffe in diesem
+Bericht zu Verstehen sind, ist ebenfalls in diesem Kapitel definiert.
+
 \subsection*{Geschäftsprozess}
 Unter einem Geschäftsprozess (Prozess) versteht man eine Zusammenfassung der
 erforderlichen betrieblichen Abläufe, die zur Erstellung
@@ -8,34 +15,36 @@ Bei der Darstellung mittels der EPK\footnote{Ereignisgesteuerte Prozesskette}
 Funktionen visualisiert.
 
 \subsection*{Workflow}
-Ein Workflow hingegen beschreibt darüberhinaus auch die beteiligten Personen und
+Ein Workflow beschreibt darüberhinaus die beteiligten Personen und
 die von ihnen auszuführenden Arbeitsschritte innerhalb des
-Prozesses.(\cite{workflow}) Es handelt sich um eine genaue Beschreibung
+Prozesses.\cite{workflow} Es handelt sich um eine genaue Beschreibung
 der Arbeitsschritte, die abgearbeitet werden müssen, um den Prozess von Anfang bis
-Ende auszuführen.
+Ende durchzuführen.
 
 \subsection*{Syntax}
 Die Syntax ist ein Bestanteil einer Sprache. Durch die Syntax wird die Notation
-der Sprache definiert. Sie beschreibt also die Sprachkonstrukte, die für eine
+der Sprache definiert. Sie beschreibt demnach die Sprachkonstrukte, die für eine
 Sprache zulässig sind und mit denen man sich in dieser Sprache ausdrücken kann.
-In Bezug auf Programmiersprachen beschreibt die Syntax demnach die
-sprachkonstrukte, mit denen der Nutzer ein Programm beschreiben
-kann.\cite[S. 26]{voelter}
+In Bezug auf Programmiersprachen beschreibt die Syntax somit die
+Sprachkonstrukte, mit denen der Nutzer ein Programm beschreiben
+kann.\cite[S. 26]{voelter}\\
+Zur Beschreibung einer Syntax wird eine \emph{Grammatik}
+verwendet\footnote{Beschreibung einer Grammatik ist im
+Praxisbericht emph{Entwicklung einer
+Grammatik für eine DSL mit xText am Beispiel einer Sprache zur Definition von 
+Pflichtprüfungen in profil c/s}\cite{pb5} zu finden.}.\cite[Seite 26]{theoinfo}
 
 \subsection*{Semantik}
-
-\subsection*{Grammatik} 
-Da in Kaptiel
-\ref{Analyse der Arbeitserleichterung} auf Grammatiken für \emph{Xtext} Bezug
-genommen wird, ist es wichtig hier zu definieren, was unter einer Grammatik verstanden wird. 
-Eine Grammatik definiert die Syntax einer Sprache und gibt somit vor, welche 
-Sprachkonstrukte bei der Verwendung der Sprache benutzt werden dürfen. \cite[Seite 26]{theoinfo}
+Die Semantik ist ebenfalls ein Bestandteil einer Sprache. Sie enthält die Regeln
+für die strukturelle Zusammensetzung der Sprachkonstrukte, die von der Syntax
+definiert werden. Bezogen auf Programmiersprachen beschreibt die Semantik die
+Bedeutung aufeinander folgender Sprachkonstrukte. \cite[S. 26]{voelter}
 
 \subsection*{Xtext}
-\emph{Xtext} ist ein Framework mit dem es zum eine möglich ist, in sehr kurzer
+\emph{Xtext} ist ein Framework mit dem es zum einen möglich ist, in sehr kurzer
 Zeit neue Sprachen zu entwickeln. Es bietet aber auch für bestehende Sprachen in
 Verbindung mit Eclipse ein entsprechendes Tooling an, mit dem sich die Arbeit
 mit dieser Sprache effizienter gestalten lässt. Das äußert sich darin, dass
 mit \emph{Xtext} Editoren generiert werden können, die Fehler in der Sprache
-erkennen und den Nutzer darauf hinweisen, wie dieser es bei der Nutzung von
-anderen Sprachen in der Eclipse IDE gewohnt ist.\cite[S. 113]{xtextdoc}
+erkennen und den Nutzer darauf hinweisen. Dieser wird dabei wie gewohnt in der
+Eclipse IDE angezeigt.\cite[S. 113]{xtextdoc}

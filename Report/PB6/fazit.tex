@@ -1,25 +1,26 @@
 \section{Fazit}
-Damit wurde gezeigt, dass durch den Einsatz von \emph{Xtext} einige
-Fehlerquellen ausgeschlossen werden können. Voraussetzung dafür ist jedoch eine
-gut definierte Grammatik, um eine  korrekte Syntax zuzusicher. Weiterhin bedarf
-es für die Absicherung semantische Zusammenhänge entsprechende
+In diesem Bericht wurde gezeigt, dass durch den Einsatz von \emph{Xtext} einige
+Fehlerquellen bei der Definition von Prüfungskonfigurationen ausgeschlossen
+werden können.
+Voraussetzung dafür ist jedoch eine gut definierte Grammatik, um eine  korrekte Syntax zuzusicher. Weiterhin bedarf
+es für die Absicherung semantischer Zusammenhänge entsprechende
 Validierungsregeln. Mit \emph{Xtext} lässt sich beides umsetzen und sehr
 einfach in Eclipse intergrieren.\\
-Durch den Ausschluss bestimmter Fehlerquellen wird bei den Arbeitschen, zu deren
-Unterstützung \emph{Xtext} eingesetzt werden kann (genannt zu Beginn von Kaptiel
-\ref{Analyse der Arbeitserleichterung}), eine Effizientsteigerung erzielt. Das
-hat auch eine Auswirkung auf den Gesamtprozess (siehe Kapitel \ref{GP}). Bei
-diesem wird das Durchführen von ProzessSchleifen, die Aufgrund von Fehler
-auftreten, reduziert. Demnach wird der Prozess beim Einsatz von \emph{Xtext}
-schneller einen Endzustand erreichen.\\
+Durch den Ausschluss bestimmter Fehlerquellen lässt sich bei den
+Arbeitschritten, zu deren Unterstützung \emph{Xtext} eingesetzt werden kann
+(genannt zu Beginn von Kaptiel \ref{Analyse der Arbeitserleichterung}), eine
+Effizientsteigerung erzielen. Das hat auch eine Auswirkung auf den Gesamtprozess
+(siehe Kapitel \ref{GP}). Auch das Durchführen von Prozessschleifen,
+die Aufgrund von fehlgeschlagener Tests auftreten, wird im
+Gesamtprozess reduziert.
+Demnach wird der Prozess beim Einsatz von \emph{Xtext} schneller einen Endzustand erreichen.\\
 Als zusätzlichen Arbeitsaufwand könnte man die Pflege der Grammatik betrachten.
 Diese muss immer aktualisiert werden, wenn \emph{Akionen} oder
 \emph{Klassennamen} neu hinzukommen, oder wenn an den Bezeichnungen
-der besteheneden etwas geändert wird. Das Editieren der Grammatik ist jedoch
+der bestehenden \emph{Akionen} und
+\emph{Klassennamen} etwas geändert wird. Das Editieren der Grammatik ist jedoch
 auch in Bezug auf diesen Aspekt ein Vorteil. Wenn die Grammatik geändert wird,
 werden in den Konfigurationsdateien an den entsprechenden Stellen Fehler
-angezeigt. Somit entfällt das Suchen entsprechender Stellen in den
+angezeigt. Dadurch entfällt das Suchen entsprechender Stellen in den
 Konfigurationsdateien, was bei vielen Konfigurationen ein erheblich größerer
-Arbeitsaufwand wäre.\\
-Allgemein steht aus meiner Sicht dem Einsatz von \emph{Xtext} in der deg für
-die Definition von Prüfungskonfigurationen nicht mehr im Weg.
+Arbeitsaufwand wäre, als das Ändern einer Zeile in der Grammatik.

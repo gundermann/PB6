@@ -3,16 +3,17 @@ Für diese Analyse wurde der Prozess zur Umsetzung einer Pflichtprüfung innerhalb
 von profil c/s herangezogen.\footnote{Informationen über \emph{Pflichtprüfungen}
 und \emph{profil c/s} sind im Praxisbericht: \emph{Entwicklung einer Grammatik
 für eine DSL mit xText am Beispiel einer Sprache zur  Definition von
-Pflichtprüfungen in profil c/s}\cite{pb5} zu finden.} Dieser Prozess umfasst
-alle Workflows von der Anforderung des Kunden, über die Analyse und Implementierung der Pflichtprüfung bis hin zur Abnahme der Umsetzung durch den Kunden. Um die Übersicht zu behalten ist es
-sinnvoll den Gewsamtprozess in drei Teilprozess einzuteilen, die in den
-nachfolgenden Unterkapiteln beschrieben werden.
+Pflichtprüfungen in profil c/s}\cite{pb5} zu finden.} Der Workflow dieses
+Prozesses umfasst alle Arbeitsschritte von der Anforderung des Kunden, über die
+Analyse und Implementierung der Pflichtprüfung, bis hin zur Abnahme der
+Umsetzung durch den Kunden. Um die Übersicht zu behalten, ist es sinnvoll den
+Gewsamtprozess in drei Teilprozess einzuteilen, die in den nachfolgenden Unterkapiteln beschrieben werden.
 
 
 \subsection{Anforderung und Analyse}\label{TP1}
 Am Anfang des Prozesses steht immer eine Anforderung vom Kunden, die in der deg
 Analysiert werden muss. Die deg erstellt für diese Anforderung ein
-entsprechendes Angebot. In diesem Beispiel wird davon ausgegange, dass zur
+entsprechendes Angebot. In diesem Beispiel wird davon ausgegangen, dass zur
 Umsetzung der Anforderung eine neue Pflichtprüfung implementiert werden muss.
 Nach der Annahme des Angebotes durch den Kunden, ist dieser Teilprozess
 (Abbildung \ref{Anforderung und Analyse}) beendet. 
@@ -27,7 +28,7 @@ Anforderung und Analyse}\label{Anforderung und Analyse}
 \subsection{Umsetzung}\label{TP2}
 Nach der Annahme des Angebotes wird der Algorithmus für die neue Pflichtprüfung
 von einem Mitarbeiter der deg implementiert und die Prüfungskonfiguration
-definiert. Im Anschluss daran wird ein Codereview durch einem anderen
+definiert. Im Anschluss daran wird ein Codereview von einem anderen
 Mitarbeiter durchgeführt, um grobe Fehler bei der Implementierung
 auszuschließen. Nachfolgend findet die Installation der Pflichtprüfung statt, in
 deren Anschluss entsprechende Tests durchgeführt werden. Nach erfolgreicher Testung ist dieser Teilprozess (Abbildung \ref{Umsetzung})
@@ -46,16 +47,16 @@ Auslieferung zum Kunden muss die Auslieferung dort installiert werden, bevor
 mit dem Testen begonnen werden kann. Wird die Prüfung positiv getestet, ist der
 Prozess für die Betrachtung in diesem Praxisbericht beendet. Falls die Prüfung
 negativ getestet wurde, beginnt die Fehlersuche beim Kunden. Der Kunde kann
-dabei nur einen Fehler bei der Installation der Prüfung gemacht haben. Ist dies
-der Fall, muss die Prüfung neu installiert werden und der Test beginnt von
+dabei einen Fehler bei der Installation der Prüfung gemacht haben, oder die
+Prüfung im Angebot falsch angenommen haben.
+Ist dies der Fall, muss die Prüfung neu installiert werden und der Test beginnt von
 vorne. Falls der Fehler vom Kunden nicht nachvollziehbar ist, wird dieser Fehler
-an die deg gemeldet. Dort beginnt eine neue Fehlersuche. Ausgehend davon, dass
-wirklich eine Fehler vorliegt, gibt es hier zwei Fehlerursachen. Die erste
-mögliche Ursache bezieht sich auf die Implementierung des Prüfungsalgorithmus
-und die zweite mögliche Ursache könnte eine falsche Definition der
-Prüfungskonfiguration sein. Je nachdem muss der konkrete Fehler gefunden,
-behoben und neu an den Kunden ausgeliefert werden (Siehe Kapitel \ref{TP1} und
-Kapitel \ref{TP2}). Dieser Prozess wird in Abbildung \ref{Auslierferung}
+an die deg gemeldet. Dort beginnt wiederum eine neue Fehlersuche. Ausgehend
+davon, dass wirklich ein Fehler vorliegt, gibt es hier zwei Fehlerursachen. Die erste
+mögliche Ursache bezieht sich auf die Implementierung des Prüfungsalgorithmus.
+Die zweite mögliche Ursache könnte eine falsche Definition der
+Prüfungskonfiguration sein. Je nachdem muss der konkrete Fehler gefunden, behoben und neu an den Kunden ausgeliefert werden (Siehe Kapitel \ref{TP1} und
+Kapitel \ref{TP2}). Dieser Teilprozess wird in Abbildung \ref{Auslierferung}
 visualisiert.
 \begin{figure}
 \includegraphics[scale=0.3]{auslieferung.jpeg}
@@ -66,27 +67,25 @@ Auslieferung}\label{Auslierferung}
 
 
 \subsection{Effizientere Workflows mit \emph{Xtext}}
-Nach der Beschreibung des Gesamtprozesses wird nun betrachtet, welche Workflows
-in diesem Prozess durch \emph{Xtext} effizienter gestaltet werden könnten. Im
-ersten Teilprozess (siehe Kapitel \ref{TP1}) ist eine direkte
-Effizientsteigerung\footnote{Direkt meint, dass sich eine Änderungen der
-Workflows nicht direkt auf die Effizienz dieses Workflows auswirken würde.}
-durch \emph{Xtext} nicht möglich, da hier noch keine Implementierung vorgenommen
-wird. Allerdings könnte eine gut lesbare Sprache, die für die Beschreibung der
-Pflichtprüfungen eingesetzt werden, die auch für der Beschreibung der Prüfung im
-Angebot zur Anwendung kommen kann. Somit könnte die Definition der
+Nach der Beschreibung des Gesamtprozesses wird nun betrachtet, welche
+Arbeitsschritte in dem Workflow des Prozesses durch \emph{Xtext} effizienter
+gestaltet werden könnten. Im Workflow des ersten Teilprozesses (siehe Kapitel
+\ref{TP1}) ist eine direkte Effizientsteigerung\footnote{Direkt meint, dass sich
+eine Änderungen des Arbeitsschrittes nicht direkt auf die Effizienz dieses
+Arbeitsschittes auswirken würde, sondern indirekt die Effizienz
+eines anderen Arbeitsschrittes steigert.} durch \emph{Xtext} nicht möglich, da
+hier noch keine Implementierung vorgenommen wird. Allerdings könnte eine gut lesbare Sprache, die für die Beschreibung der Pflichtprüfungen eingesetzt werden, die auch für der Beschreibung der Prüfung im Angebot zur Anwendung kommen kann. Somit könnte die Definition der
 Prüfungskonfiguration vom Angebot einfach übernommen werden und müsste nicht in
-eine andere Syntax übernommen werden. Insofern würde die Veränderung des
-Workflows \emph{Angebot mit neuer Pflichtprüfung erstellen} zu einer Zeit- und
-Kosteneinsparung beim Workflow \emph{Prüfungskonfiguration definieren} im
-Teilprozess aus Kapitel \ref{TP2} führen.\\
-Im zweiten Teilprozess (siehe Kapitel \ref{TP2}) kann \emph{Xtext} dabei helfen,
-die Prüfungskonfiguration zu definieren. Damit würde auch das Codereview für die
-Definition der Pflichtprüfungskonfiguration überflüssig. Darauf wird später
-nochmal eingegangen. Beim Testen der Prüfung sehe ich keine Möglichkeit für die
+eine andere Syntax überführt werden. Insofern würde die Veränderung des
+Arbeitschrittes \emph{Angebot mit neuer Pflichtprüfung erstellen} zu einer Zeit-
+und Kosteneinsparung beim Arbeitsschritt \emph{Prüfungskonfiguration definieren}
+im Workflow des Teilprozesses aus Kapitel \ref{TP2} führen.\\
+Im Workflow des zweiten Teilprozesses (siehe Kapitel \ref{TP2}) kann
+\emph{Xtext} dabei helfen, die Prüfungskonfiguration zu definieren. Das
+hätte auch Auswirkungen auf das Codereview. Darauf wird später nochmal eingegangen. Beim Testen der Prüfung sehe ich keine Möglichkeit für die
 Nutzung von \emph{Xtext}.\\
-Im dritten Teilprozess (siehe Kapitel \ref{TP3}) wäre es durch den Einsatz von
-\emph{Xtext} möglich, die Fehlersuche zu vereinfachen. Nicht nur bei der deg könnten
+Im Workflow des dritten Teilprozesses (siehe Kapitel \ref{TP3}) wäre es durch
+den Einsatz von \emph{Xtext} möglich, die Fehlersuche zu vereinfachen. Nicht nur bei der deg könnten
 Fehler in der Prüfungskonfiguration schneller erkannt werden. Auch der Kunde
 kann durch die Nutzung vo \emph{Xtext} seine Fehlersuche ausweiten. Im
 späteren Verlauf wird auch darauf Bezug genommen.
