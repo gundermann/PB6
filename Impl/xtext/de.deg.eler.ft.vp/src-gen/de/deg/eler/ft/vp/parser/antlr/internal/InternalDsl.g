@@ -244,8 +244,71 @@ ruleKonfiguration returns [EObject current=null]
 	    }
 
 )
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getKonfigurationAccess().getPruefungsichtbarkeitPRUEFUNGSICHTBARKEITParserRuleCall_3_6_0()); 
+	    }
+		lv_pruefungsichtbarkeit_9_0=rulePRUEFUNGSICHTBARKEIT		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getKonfigurationRule());
+	        }
+       		add(
+       			$current, 
+       			"pruefungsichtbarkeit",
+        		lv_pruefungsichtbarkeit_9_0, 
+        		"PRUEFUNGSICHTBARKEIT");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 ))*)
 ;
+
+
+
+
+
+// Entry rule entryRulePRUEFUNGSICHTBARKEIT
+entryRulePRUEFUNGSICHTBARKEIT returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPRUEFUNGSICHTBARKEITRule()); } 
+	 iv_rulePRUEFUNGSICHTBARKEIT=rulePRUEFUNGSICHTBARKEIT 
+	 { $current=$iv_rulePRUEFUNGSICHTBARKEIT.current.getText(); }  
+	 EOF 
+;
+
+// Rule PRUEFUNGSICHTBARKEIT
+rulePRUEFUNGSICHTBARKEIT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='PruefungSichtbar.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPRUEFUNGSICHTBARKEITAccess().getPruefungSichtbarKeyword_0()); 
+    }
+
+    { 
+        newCompositeNode(grammarAccess.getPRUEFUNGSICHTBARKEITAccess().getPRUEFUNGParserRuleCall_1()); 
+    }
+    this_PRUEFUNG_1=rulePRUEFUNG    {
+		$current.merge(this_PRUEFUNG_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+	kw=' =' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPRUEFUNGSICHTBARKEITAccess().getSpaceEqualsSignKeyword_2()); 
+    }
+)
+    ;
 
 
 

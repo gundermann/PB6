@@ -44,7 +44,8 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             pruefungsklassenname+=PRUEFUNGSKLASSENNAME | 
 	 *             pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT | 
 	 *             pruefungslangtext+=PRUEFUNGSLANGTEXT | 
-	 *             pruefungswirkung+=PRUEFUNGSWIRKUNG
+	 *             pruefungswirkung+=PRUEFUNGSWIRKUNG | 
+	 *             pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT
 	 *         )*
 	 *     )
 	 */

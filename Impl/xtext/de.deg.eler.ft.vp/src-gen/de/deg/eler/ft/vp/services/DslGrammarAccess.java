@@ -40,18 +40,22 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPruefungslangtextPRUEFUNGSLANGTEXTParserRuleCall_3_4_0 = (RuleCall)cPruefungslangtextAssignment_3_4.eContents().get(0);
 		private final Assignment cPruefungswirkungAssignment_3_5 = (Assignment)cAlternatives_3.eContents().get(5);
 		private final RuleCall cPruefungswirkungPRUEFUNGSWIRKUNGParserRuleCall_3_5_0 = (RuleCall)cPruefungswirkungAssignment_3_5.eContents().get(0);
+		private final Assignment cPruefungsichtbarkeitAssignment_3_6 = (Assignment)cAlternatives_3.eContents().get(6);
+		private final RuleCall cPruefungsichtbarkeitPRUEFUNGSICHTBARKEITParserRuleCall_3_6_0 = (RuleCall)cPruefungsichtbarkeitAssignment_3_6.eContents().get(0);
 		
 		//Konfiguration:
 		//	usedids+=UsedIDs spezantragszuweisung+=SPEZ_ANTRAGSZUWEISUNG* antragszuweisung+=Zuweisung*
 		//	(vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion | pruefungsaktion+=PRUEFUNGSAKTION |
 		//	pruefungsklassenname+=PRUEFUNGSKLASSENNAME | pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT |
-		//	pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG)*;
+		//	pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG |
+		//	pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT)*;
 		public ParserRule getRule() { return rule; }
 
 		//usedids+=UsedIDs spezantragszuweisung+=SPEZ_ANTRAGSZUWEISUNG* antragszuweisung+=Zuweisung*
 		//(vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion | pruefungsaktion+=PRUEFUNGSAKTION |
 		//pruefungsklassenname+=PRUEFUNGSKLASSENNAME | pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT |
-		//pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG)*
+		//pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG |
+		//pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT)*
 		public Group getGroup() { return cGroup; }
 
 		//usedids+=UsedIDs
@@ -74,7 +78,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//(vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion | pruefungsaktion+=PRUEFUNGSAKTION |
 		//pruefungsklassenname+=PRUEFUNGSKLASSENNAME | pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT |
-		//pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG)*
+		//pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG |
+		//pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT)*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion
@@ -112,6 +117,36 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PRUEFUNGSWIRKUNG
 		public RuleCall getPruefungswirkungPRUEFUNGSWIRKUNGParserRuleCall_3_5_0() { return cPruefungswirkungPRUEFUNGSWIRKUNGParserRuleCall_3_5_0; }
+
+		//pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT
+		public Assignment getPruefungsichtbarkeitAssignment_3_6() { return cPruefungsichtbarkeitAssignment_3_6; }
+
+		//PRUEFUNGSICHTBARKEIT
+		public RuleCall getPruefungsichtbarkeitPRUEFUNGSICHTBARKEITParserRuleCall_3_6_0() { return cPruefungsichtbarkeitPRUEFUNGSICHTBARKEITParserRuleCall_3_6_0; }
+	}
+
+	public class PRUEFUNGSICHTBARKEITElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PRUEFUNGSICHTBARKEIT");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPruefungSichtbarKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cPRUEFUNGParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cSpaceEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//PRUEFUNGSICHTBARKEIT:
+		//	"PruefungSichtbar." PRUEFUNG " =";
+		public ParserRule getRule() { return rule; }
+
+		//"PruefungSichtbar." PRUEFUNG " ="
+		public Group getGroup() { return cGroup; }
+
+		//"PruefungSichtbar."
+		public Keyword getPruefungSichtbarKeyword_0() { return cPruefungSichtbarKeyword_0; }
+
+		//PRUEFUNG
+		public RuleCall getPRUEFUNGParserRuleCall_1() { return cPRUEFUNGParserRuleCall_1; }
+
+		//" ="
+		public Keyword getSpaceEqualsSignKeyword_2() { return cSpaceEqualsSignKeyword_2; }
 	}
 
 	public class VwkpaktionkonfiguraktionElements extends AbstractParserRuleElementFinder {
@@ -2262,6 +2297,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final KonfigurationElements pKonfiguration;
+	private final PRUEFUNGSICHTBARKEITElements pPRUEFUNGSICHTBARKEIT;
 	private final TerminalRule tSL_COMMENT;
 	private final VwkpaktionkonfiguraktionElements pVwkpaktionkonfiguraktion;
 	private final VWKPTYPElements pVWKPTYP;
@@ -2291,6 +2327,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pKonfiguration = new KonfigurationElements();
+		this.pPRUEFUNGSICHTBARKEIT = new PRUEFUNGSICHTBARKEITElements();
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
 		this.pVwkpaktionkonfiguraktion = new VwkpaktionkonfiguraktionElements();
 		this.pVWKPTYP = new VWKPTYPElements();
@@ -2342,13 +2379,24 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//	usedids+=UsedIDs spezantragszuweisung+=SPEZ_ANTRAGSZUWEISUNG* antragszuweisung+=Zuweisung*
 	//	(vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion | pruefungsaktion+=PRUEFUNGSAKTION |
 	//	pruefungsklassenname+=PRUEFUNGSKLASSENNAME | pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT |
-	//	pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG)*;
+	//	pruefungslangtext+=PRUEFUNGSLANGTEXT | pruefungswirkung+=PRUEFUNGSWIRKUNG |
+	//	pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT)*;
 	public KonfigurationElements getKonfigurationAccess() {
 		return pKonfiguration;
 	}
 	
 	public ParserRule getKonfigurationRule() {
 		return getKonfigurationAccess().getRule();
+	}
+
+	//PRUEFUNGSICHTBARKEIT:
+	//	"PruefungSichtbar." PRUEFUNG " =";
+	public PRUEFUNGSICHTBARKEITElements getPRUEFUNGSICHTBARKEITAccess() {
+		return pPRUEFUNGSICHTBARKEIT;
+	}
+	
+	public ParserRule getPRUEFUNGSICHTBARKEITRule() {
+		return getPRUEFUNGSICHTBARKEITAccess().getRule();
 	}
 
 	//terminal SL_COMMENT:

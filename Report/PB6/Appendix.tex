@@ -1,3 +1,6 @@
+\appendix
+\section{Implementiertung}
+\begin{lstlisting}[caption = Grammatik für die Syntax der Konfigurationsdateien]
 grammar de.deg.eler.ft.vp.Dsl with org.eclipse.xtext.common.Terminals
 
 generate dsl "http://www.deg.de/eler/ft/vp/Dsl"
@@ -350,5 +353,187 @@ KLASSE:
 	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAZFKVJ' |
 	'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PASperrvermerkNichtVergeben' |
 	'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PAAumKuliZuMaAZLAktuellUndBeendet';
+\end{lstlisting}\label{Grammatik}
 
 
+\begin{lstlisting}[caption = Validator-Klasse für die Konfigurationsdateien]
+package de.deg.eler.ft.vp.validation
+
+import de.deg.eler.ft.vp.dsl.DslPackage
+import de.deg.eler.ft.vp.dsl.Konfiguration
+import java.util.ArrayList
+import java.util.HashMap
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.xtext.validation.Check
+
+/**
+ * Custom validation rules. 
+ *
+ * see http://www.eclipse.org/Xtext/documentation.html#validation
+ */
+class DslValidator extends AbstractDslValidator {
+
+	String WARNUNG_KEINE_LAUFENDE_NUMMER = "Bei der laufenden Nummer für die Definition der %s wurde bei der Prüfung %s die Nummer %s übersprungen";
+
+	String WARNUNG_KEINE_ID_DEKLARIERT = "Die Prüfung %s wurde nicht deklariert."
+
+	String WARNUNG_ID_NICHT_VERWENDET = "Die ID %s wird bei der Definition der %s nicht verwendet."
+
+	String WARUNUNG_DOPPELT_GENUTZTE_PRUEFUNG = "%s ist für die Prüfung %s schon konfiguriert."
+
+	String WARNUNG_PRUEFUNG_KEINEM_ANTRAG_ZUGEWIESEN = "Die Prüfung %s wurde keinem Antrag zugewiesen."
+
+	@Check
+	def checkIdsFuerAntragszuweisungDeklariert(Konfiguration konfiguration) {
+		checkIdsVonZuweisungDeklariert(konfiguration.spezantragszuweisung, konfiguration.usedids.get(0),
+			DslPackage.Literals.KONFIGURATION__SPEZANTRAGSZUWEISUNG)
+	}
+
+	@Check
+	def checkIdsFuerAntragsArtzuweisungDeklariert(Konfiguration konfiguration) {
+		checkIdsVonZuweisungDeklariert(konfiguration.antragszuweisung, konfiguration.usedids.get(0),
+			DslPackage.Literals.KONFIGURATION__ANTRAGSZUWEISUNG)
+	}
+
+	@Check
+	def checkLaufendeNummerWirkung(Konfiguration konfiguration) {
+		checkFehltZahlInLaufenderNummer(
+			extrahierePruefungZuLaufendeNummerMapFuerEigenschaft(konfiguration.pruefungswirkung), "Wirkung",
+			DslPackage.Literals.KONFIGURATION__PRUEFUNGSWIRKUNG);
+	}
+
+	@Check
+	def checkLaufendeNummerAktion(Konfiguration konfiguration) {
+		checkFehltZahlInLaufenderNummer(
+			extrahierePruefungZuLaufendeNummerMapFuerEigenschaft(konfiguration.pruefungsaktion), "Aktion",
+			DslPackage.Literals.KONFIGURATION__PRUEFUNGSAKTION);
+	}
+
+	@Check
+	def checkMehrfacheDefinition(Konfiguration konfig) {
+		var deklariertePruefungen = extrahiereDeklariertePruefungen(konfig.usedids.get(0))
+		for (String pruefung : deklariertePruefungen) {
+			checkMehrfacheVerwendungDerPruefung(konfig.pruefungskurzbezeichnung, pruefung,
+				DslPackage.Literals.KONFIGURATION__PRUEFUNGSKURZBEZEICHNUNG)
+			checkMehrfacheVerwendungDerPruefung(konfig.pruefungslangtext, pruefung,
+				DslPackage.Literals.KONFIGURATION__PRUEFUNGSLANGTEXT)
+			checkMehrfacheVerwendungDerPruefung(konfig.pruefungsichtbarkeit, pruefung,
+				DslPackage.Literals.KONFIGURATION__PRUEFUNGSICHTBARKEIT)
+		}
+	}
+
+	@Check
+	def checkIdVerwendung(Konfiguration konfig) {
+		var deklariertePruefungen = extrahiereDeklariertePruefungen(konfig.usedids.get(0))
+		for (String pruefung : deklariertePruefungen) {
+			checkVerwendungInAntrag(konfig.antragszuweisung, konfig.spezantragszuweisung, pruefung)
+		}
+	}
+
+	def checkIdsVonZuweisungDeklariert(EList<String> konfigurationen, String konfigFuerDeklarierteIDs,
+		EStructuralFeature feature) {
+		var index = 0
+		for (konfiguration : konfigurationen) {
+			var zugewiesenePruefungen = extrahiereDeklariertePruefungen(konfiguration)
+			for (pruefung : zugewiesenePruefungen) {
+				var deklariertePruefungen = extrahiereDeklariertePruefungen(konfigFuerDeklarierteIDs)
+				if (!deklariertePruefungen.contains(pruefung.trim)) {
+					error(String.format(WARNUNG_KEINE_ID_DEKLARIERT, pruefung), feature, index)
+				}
+			}
+			index++
+		}
+	}
+
+	def extrahiereDeklariertePruefungen(String konfigFuerDeklarierteIDs) {
+		return konfigFuerDeklarierteIDs.substring(konfigFuerDeklarierteIDs.indexOf("=") + 1,
+			konfigFuerDeklarierteIDs.length).split('\\,')
+	}
+
+	def extrahierePruefung(String konfigString) {
+		extrahierePart(konfigString, 1)
+	}
+
+	def extrahierePart(String konfigString, Integer part) {
+		var geteilteKonfig = konfigString.split('\\.')
+		var zuExtrahierenderTeil = geteilteKonfig.get(part)
+		if (zuExtrahierenderTeil.contains(" "))
+			return zuExtrahierenderTeil.substring(0, zuExtrahierenderTeil.indexOf(" "))
+		else
+			return zuExtrahierenderTeil
+	}
+
+	def extrahierePruefungZuLaufendeNummerMapFuerEigenschaft(EList<String> eigenschaften) {
+		var pruefungZuEigenschaftMap = new HashMap<String, ArrayList<Integer>>()
+		for (eigenschaft : eigenschaften) {
+			var pruefung = extrahierePruefung(eigenschaft)
+			var laufendeNummer = extrahiereLaufendeNummer(eigenschaft)
+			var listeMitLaufenderNummer = new ArrayList<Integer>()
+			if (!pruefungZuEigenschaftMap.containsKey(pruefung)) {
+			} else {
+				listeMitLaufenderNummer = pruefungZuEigenschaftMap.get(pruefung)
+			}
+			listeMitLaufenderNummer.add(Integer.parseInt(laufendeNummer))
+			pruefungZuEigenschaftMap.put(pruefung, listeMitLaufenderNummer)
+		}
+		return pruefungZuEigenschaftMap
+	}
+
+	def extrahiereLaufendeNummer(String konfigString) {
+		extrahierePart(konfigString, 2)
+	}
+
+	def checkFehltZahlInLaufenderNummer(HashMap<String, ArrayList<Integer>> map, String eigenschaft,
+		EStructuralFeature feature) {
+		var index = 0
+		for (pruefung : map.keySet) {
+			var nummern = map.get(pruefung)
+			for (var ln = 1; ln < nummern.size; ln++) {
+				if (!nummern.contains(ln)) {
+					error(String.format(WARNUNG_KEINE_LAUFENDE_NUMMER, eigenschaft, pruefung, ln), feature, index)
+				}
+				index++
+			}
+		}
+	}
+
+	def checkVerwendungInAntrag(EList<String> zuweisungenZuAntragsart, EList<String> zuweisungenZuAntrag,
+		String pruefung) {
+		for (antragsartZuweisung : zuweisungenZuAntragsart) {
+			var zugewiesenePreufungen = extrahiereDeklariertePruefungen(antragsartZuweisung)
+			if (zugewiesenePreufungen.contains(pruefung)) {
+				return
+			}
+		}
+		for (antragsZuweisung : zuweisungenZuAntrag) {
+			var zugewiesenePreufungen = extrahiereDeklariertePruefungen(antragsZuweisung)
+			if (zugewiesenePreufungen.contains(pruefung)) {
+				return
+			}
+		}
+		error(String.format(WARNUNG_PRUEFUNG_KEINEM_ANTRAG_ZUGEWIESEN, pruefung),
+			DslPackage.Literals.KONFIGURATION__USEDIDS)
+
+	}
+
+	def checkMehrfacheVerwendungDerPruefung(EList<String> list, String pruefung, EAttribute attribute) {
+		var index = 0
+		var gefundeneKonfigurationen = 0
+		for (konfiguration : list) {
+			var pruefungBenutzt = extrahierePruefung(konfiguration)
+			if (pruefungBenutzt.equals(pruefung)) {
+				if (gefundeneKonfigurationen == 0)
+					gefundeneKonfigurationen = 1
+				else
+					error(String.format(WARUNUNG_DOPPELT_GENUTZTE_PRUEFUNG, attribute.name, pruefung), attribute,
+						index)
+			}
+			index++
+		}
+	}
+
+}
+
+\end{lstlisting}\label{ValidierungCode}

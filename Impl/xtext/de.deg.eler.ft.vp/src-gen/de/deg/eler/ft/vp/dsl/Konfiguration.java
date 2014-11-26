@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungskurzbezeichnung <em>Pruefungskurzbezeichnung</em>}</li>
  *   <li>{@link de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungslangtext <em>Pruefungslangtext</em>}</li>
  *   <li>{@link de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungswirkung <em>Pruefungswirkung</em>}</li>
+ *   <li>{@link de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungsichtbarkeit <em>Pruefungsichtbarkeit</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,7 +143,7 @@ public interface Konfiguration extends EObject
    * @model unique="false"
    * @generated
    */
-  EList<String> getPruefungskurztext();
+  EList<String> getPruefungskurzbezeichnung();
 
   /**
    * Returns the value of the '<em><b>Pruefungslangtext</b></em>' attribute list.
@@ -175,5 +176,21 @@ public interface Konfiguration extends EObject
    * @generated
    */
   EList<String> getPruefungswirkung();
+
+  /**
+   * Returns the value of the '<em><b>Pruefungsichtbarkeit</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pruefungsichtbarkeit</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pruefungsichtbarkeit</em>' attribute list.
+   * @see de.deg.eler.ft.vp.dsl.DslPackage#getKonfiguration_Pruefungsichtbarkeit()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getPruefungsichtbarkeit();
 
 } // Konfiguration

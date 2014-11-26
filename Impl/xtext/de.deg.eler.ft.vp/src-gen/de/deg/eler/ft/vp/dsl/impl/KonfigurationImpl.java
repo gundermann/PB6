@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link de.deg.eler.ft.vp.dsl.impl.KonfigurationImpl#getPruefungskurzbezeichnung <em>Pruefungskurzbezeichnung</em>}</li>
  *   <li>{@link de.deg.eler.ft.vp.dsl.impl.KonfigurationImpl#getPruefungslangtext <em>Pruefungslangtext</em>}</li>
  *   <li>{@link de.deg.eler.ft.vp.dsl.impl.KonfigurationImpl#getPruefungswirkung <em>Pruefungswirkung</em>}</li>
+ *   <li>{@link de.deg.eler.ft.vp.dsl.impl.KonfigurationImpl#getPruefungsichtbarkeit <em>Pruefungsichtbarkeit</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,10 +100,10 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
   protected EList<String> pruefungsklassenname;
 
   /**
-   * The cached value of the '{@link #getPruefungstext() <em>Pruefungskurzbezeichnung</em>}' attribute list.
+   * The cached value of the '{@link #getPruefungskurzbezeichnung() <em>Pruefungskurzbezeichnung</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPruefungstext()
+   * @see #getPruefungskurzbezeichnung()
    * @generated
    * @ordered
    */
@@ -127,6 +128,16 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
    * @ordered
    */
   protected EList<String> pruefungswirkung;
+
+  /**
+   * The cached value of the '{@link #getPruefungsichtbarkeit() <em>Pruefungsichtbarkeit</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPruefungsichtbarkeit()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> pruefungsichtbarkeit;
 
   /**
    * <!-- begin-user-doc -->
@@ -238,7 +249,7 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getPruefungskurztext()
+  public EList<String> getPruefungskurzbezeichnung()
   {
     if (pruefungskurzbezeichnung == null)
     {
@@ -280,6 +291,20 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getPruefungsichtbarkeit()
+  {
+    if (pruefungsichtbarkeit == null)
+    {
+      pruefungsichtbarkeit = new EDataTypeEList<String>(String.class, this, DslPackage.KONFIGURATION__PRUEFUNGSICHTBARKEIT);
+    }
+    return pruefungsichtbarkeit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -298,11 +323,13 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
       case DslPackage.KONFIGURATION__PRUEFUNGSKLASSENNAME:
         return getPruefungsklassenname();
       case DslPackage.KONFIGURATION__PRUEFUNGSKURZBEZEICHNUNG:
-        return getPruefungskurztext();
+        return getPruefungskurzbezeichnung();
       case DslPackage.KONFIGURATION__PRUEFUNGSLANGTEXT:
         return getPruefungslangtext();
       case DslPackage.KONFIGURATION__PRUEFUNGSWIRKUNG:
         return getPruefungswirkung();
+      case DslPackage.KONFIGURATION__PRUEFUNGSICHTBARKEIT:
+        return getPruefungsichtbarkeit();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -343,8 +370,8 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
         getPruefungsklassenname().addAll((Collection<? extends String>)newValue);
         return;
       case DslPackage.KONFIGURATION__PRUEFUNGSKURZBEZEICHNUNG:
-        getPruefungskurztext().clear();
-        getPruefungskurztext().addAll((Collection<? extends String>)newValue);
+        getPruefungskurzbezeichnung().clear();
+        getPruefungskurzbezeichnung().addAll((Collection<? extends String>)newValue);
         return;
       case DslPackage.KONFIGURATION__PRUEFUNGSLANGTEXT:
         getPruefungslangtext().clear();
@@ -353,6 +380,10 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
       case DslPackage.KONFIGURATION__PRUEFUNGSWIRKUNG:
         getPruefungswirkung().clear();
         getPruefungswirkung().addAll((Collection<? extends String>)newValue);
+        return;
+      case DslPackage.KONFIGURATION__PRUEFUNGSICHTBARKEIT:
+        getPruefungsichtbarkeit().clear();
+        getPruefungsichtbarkeit().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -387,13 +418,16 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
         getPruefungsklassenname().clear();
         return;
       case DslPackage.KONFIGURATION__PRUEFUNGSKURZBEZEICHNUNG:
-        getPruefungskurztext().clear();
+        getPruefungskurzbezeichnung().clear();
         return;
       case DslPackage.KONFIGURATION__PRUEFUNGSLANGTEXT:
         getPruefungslangtext().clear();
         return;
       case DslPackage.KONFIGURATION__PRUEFUNGSWIRKUNG:
         getPruefungswirkung().clear();
+        return;
+      case DslPackage.KONFIGURATION__PRUEFUNGSICHTBARKEIT:
+        getPruefungsichtbarkeit().clear();
         return;
     }
     super.eUnset(featureID);
@@ -427,6 +461,8 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
         return pruefungslangtext != null && !pruefungslangtext.isEmpty();
       case DslPackage.KONFIGURATION__PRUEFUNGSWIRKUNG:
         return pruefungswirkung != null && !pruefungswirkung.isEmpty();
+      case DslPackage.KONFIGURATION__PRUEFUNGSICHTBARKEIT:
+        return pruefungsichtbarkeit != null && !pruefungsichtbarkeit.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -460,6 +496,8 @@ public class KonfigurationImpl extends MinimalEObjectImpl.Container implements K
     result.append(pruefungslangtext);
     result.append(", pruefungswirkung: ");
     result.append(pruefungswirkung);
+    result.append(", pruefungsichtbarkeit: ");
+    result.append(pruefungsichtbarkeit);
     result.append(')');
     return result.toString();
   }

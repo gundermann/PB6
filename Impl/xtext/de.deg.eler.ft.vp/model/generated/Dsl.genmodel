@@ -17,6 +17,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Konfiguration/pruefungskurzbezeichnung"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Konfiguration/pruefungslangtext"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Konfiguration/pruefungswirkung"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Konfiguration/pruefungsichtbarkeit"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

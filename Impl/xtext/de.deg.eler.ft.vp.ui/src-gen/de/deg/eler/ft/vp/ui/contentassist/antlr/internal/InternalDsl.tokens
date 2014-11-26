@@ -1,7 +1,8 @@
-' = '=312
-','=313
-'.'=318
-'.Aktion.'=311
+' = '=314
+' ='=311
+','=315
+'.'=320
+'.Aktion.'=313
 'AUSZANTRAG'=16
 'AntragAblehnen'=29
 'AntragBewilligen'=28
@@ -19,7 +20,7 @@
 'AntragZahlungAnweisen'=30
 'Automatisch'=11
 'BerechnenUndPruefen'=20
-'CodesAlle = '=321
+'CodesAlle = '=323
 'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PAAumKuliZuMaAZLAktuellUndBeendet'=309
 'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PASperrvermerkNichtVergeben'=308
 'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.AbstractAumPruefalgorithmusAusRechenschritt'=40
@@ -292,20 +293,21 @@
 'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAZFKVJ'=307
 'DokumentBearbeitungBeenden'=27
 'DokumentBearbeitungBeginnen'=21
-'DvAntragsArt.'=320
+'DvAntragsArt.'=322
 'ERWANTRAG'=17
 'Manuell'=12
 'NEUANTRAG'=18
 'NachberechnungStornieren'=23
 'OHNE'=14
-'PruefungAktion.'=317
-'PruefungKlassenname.'=316
-'PruefungKurzbezeichnung.'=315
-'PruefungLangtext.'=314
-'PruefungWirkung.'=319
+'PruefungAktion.'=319
+'PruefungKlassenname.'=318
+'PruefungKurzbezeichnung.'=317
+'PruefungLangtext.'=316
+'PruefungSichtbar.'=310
+'PruefungWirkung.'=321
 'VERHINDERT_AKTION'=13
 'VERLANTRAG'=19
-'VWKPKonfiguration.'=310
+'VWKPKonfiguration.'=312
 'WARNUNG'=15
 'Zurueckziehen'=22
 'ZurueckziehenZuruecknehmen'=24
@@ -559,6 +561,8 @@ T__319=319
 T__31=31
 T__320=320
 T__321=321
+T__322=322
+T__323=323
 T__32=32
 T__33=33
 T__34=34

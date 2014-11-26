@@ -195,6 +195,16 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getKonfiguration_Pruefungsichtbarkeit()
+  {
+    return (EAttribute)konfigurationEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DslFactory getDslFactory()
   {
     return (DslFactory)getEFactoryInstance();
@@ -230,6 +240,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     createEAttribute(konfigurationEClass, KONFIGURATION__PRUEFUNGSKURZBEZEICHNUNG);
     createEAttribute(konfigurationEClass, KONFIGURATION__PRUEFUNGSLANGTEXT);
     createEAttribute(konfigurationEClass, KONFIGURATION__PRUEFUNGSWIRKUNG);
+    createEAttribute(konfigurationEClass, KONFIGURATION__PRUEFUNGSICHTBARKEIT);
   }
 
   /**
@@ -273,6 +284,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEAttribute(getKonfiguration_Pruefungskurzbezeichnung(), ecorePackage.getEString(), "pruefungskurzbezeichnung", null, 0, -1, Konfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getKonfiguration_Pruefungslangtext(), ecorePackage.getEString(), "pruefungslangtext", null, 0, -1, Konfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getKonfiguration_Pruefungswirkung(), ecorePackage.getEString(), "pruefungswirkung", null, 0, -1, Konfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getKonfiguration_Pruefungsichtbarkeit(), ecorePackage.getEString(), "pruefungsichtbarkeit", null, 0, -1, Konfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

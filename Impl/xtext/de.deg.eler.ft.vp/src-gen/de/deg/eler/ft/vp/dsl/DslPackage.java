@@ -147,13 +147,22 @@ public interface DslPackage extends EPackage
   int KONFIGURATION__PRUEFUNGSWIRKUNG = 8;
 
   /**
+   * The feature id for the '<em><b>Pruefungsichtbarkeit</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int KONFIGURATION__PRUEFUNGSICHTBARKEIT = 9;
+
+  /**
    * The number of structural features of the '<em>Konfiguration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int KONFIGURATION_FEATURE_COUNT = 9;
+  int KONFIGURATION_FEATURE_COUNT = 10;
 
 
   /**
@@ -237,7 +246,7 @@ public interface DslPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute list '<em>Pruefungskurzbezeichnung</em>'.
-   * @see de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungstext()
+   * @see de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungskurzbezeichnung()
    * @see #getKonfiguration()
    * @generated
    */
@@ -264,6 +273,17 @@ public interface DslPackage extends EPackage
    * @generated
    */
   EAttribute getKonfiguration_Pruefungswirkung();
+
+  /**
+   * Returns the meta object for the attribute list '{@link de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungsichtbarkeit <em>Pruefungsichtbarkeit</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Pruefungsichtbarkeit</em>'.
+   * @see de.deg.eler.ft.vp.dsl.Konfiguration#getPruefungsichtbarkeit()
+   * @see #getKonfiguration()
+   * @generated
+   */
+  EAttribute getKonfiguration_Pruefungsichtbarkeit();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -369,6 +389,14 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EAttribute KONFIGURATION__PRUEFUNGSWIRKUNG = eINSTANCE.getKonfiguration_Pruefungswirkung();
+
+    /**
+     * The meta object literal for the '<em><b>Pruefungsichtbarkeit</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute KONFIGURATION__PRUEFUNGSICHTBARKEIT = eINSTANCE.getKonfiguration_Pruefungsichtbarkeit();
 
   }
 

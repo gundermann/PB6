@@ -44,6 +44,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAKTIONAccess().getAlternatives(), "rule__AKTION__Alternatives");
 					put(grammarAccess.getKLASSEAccess().getAlternatives(), "rule__KLASSE__Alternatives");
 					put(grammarAccess.getKonfigurationAccess().getGroup(), "rule__Konfiguration__Group__0");
+					put(grammarAccess.getPRUEFUNGSICHTBARKEITAccess().getGroup(), "rule__PRUEFUNGSICHTBARKEIT__Group__0");
 					put(grammarAccess.getVwkpaktionkonfiguraktionAccess().getGroup(), "rule__Vwkpaktionkonfiguraktion__Group__0");
 					put(grammarAccess.getSPEZ_ANTRAGSZUWEISUNGAccess().getGroup(), "rule__SPEZ_ANTRAGSZUWEISUNG__Group__0");
 					put(grammarAccess.getSPEZ_ANTRAGSZUWEISUNGAccess().getGroup_2(), "rule__SPEZ_ANTRAGSZUWEISUNG__Group_2__0");
@@ -67,6 +68,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getKonfigurationAccess().getPruefungskurzbezeichnungAssignment_3_3(), "rule__Konfiguration__PruefungskurzbezeichnungAssignment_3_3");
 					put(grammarAccess.getKonfigurationAccess().getPruefungslangtextAssignment_3_4(), "rule__Konfiguration__PruefungslangtextAssignment_3_4");
 					put(grammarAccess.getKonfigurationAccess().getPruefungswirkungAssignment_3_5(), "rule__Konfiguration__PruefungswirkungAssignment_3_5");
+					put(grammarAccess.getKonfigurationAccess().getPruefungsichtbarkeitAssignment_3_6(), "rule__Konfiguration__PruefungsichtbarkeitAssignment_3_6");
 				}
 			};
 		}
