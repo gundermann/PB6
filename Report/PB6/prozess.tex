@@ -7,12 +7,13 @@ Pflichtprüfungen in profil c/s}\cite{pb5} zu finden.} Der Workflow dieses
 Prozesses umfasst alle Arbeitsschritte von der Anforderung des Kunden, über die
 Analyse und Implementierung der Pflichtprüfung, bis hin zur Abnahme der
 Umsetzung durch den Kunden. Um die Übersicht zu behalten, ist es sinnvoll den
-Gewsamtprozess in drei Teilprozess einzuteilen, die in den nachfolgenden Unterkapiteln beschrieben werden.
+Gesamtprozess in drei Teilprozesse einzuteilen, die in den nachfolgenden
+Unterkapiteln beschrieben werden.
 
 
 \subsection{Anforderung und Analyse}\label{TP1}
 Am Anfang des Prozesses steht immer eine Anforderung vom Kunden, die in der deg
-Analysiert werden muss. Die deg erstellt für diese Anforderung ein
+analysiert werden muss. Die deg erstellt für diese Anforderung ein
 entsprechendes Angebot. In diesem Beispiel wird davon ausgegangen, dass zur
 Umsetzung der Anforderung eine neue Pflichtprüfung implementiert werden muss.
 Nach der Annahme des Angebotes durch den Kunden, ist dieser Teilprozess
@@ -49,15 +50,14 @@ Prozess für die Betrachtung in diesem Praxisbericht beendet. Falls die Prüfung
 negativ getestet wurde, beginnt die Fehlersuche beim Kunden. Der Kunde kann
 dabei einen Fehler bei der Installation der Prüfung gemacht haben, oder die
 Prüfung im Angebot falsch angenommen haben.
-Ist dies der Fall, muss die Prüfung neu installiert werden und der Test beginnt von
-vorne. Falls der Fehler vom Kunden nicht nachvollziehbar ist, wird dieser Fehler
-an die deg gemeldet. Dort beginnt wiederum eine neue Fehlersuche. Ausgehend
-davon, dass wirklich ein Fehler vorliegt, gibt es hier zwei Fehlerursachen. Die erste
+Ist dies der Fall, muss die Prüfung neu installiert werden und der Test beginnt
+erneut. Falls der Fehler vom Kunden nicht nachvollziehbar ist, wird dieser
+Fehler an die deg gemeldet. Dort beginnt wiederum eine neue Fehlersuche. Ausgehend davon, dass wirklich ein Fehler vorliegt, gibt es hier zwei Fehlerursachen. Die erste
 mögliche Ursache bezieht sich auf die Implementierung des Prüfungsalgorithmus.
 Die zweite mögliche Ursache könnte eine falsche Definition der
-Prüfungskonfiguration sein. Je nachdem muss der konkrete Fehler gefunden, behoben und neu an den Kunden ausgeliefert werden (Siehe Kapitel \ref{TP1} und
-Kapitel \ref{TP2}). Dieser Teilprozess wird in Abbildung \ref{Auslierferung}
-visualisiert.
+Prüfungskonfiguration sein. Je nachdem muss der konkrete Fehler gefunden,
+behoben und neu an den Kunden ausgeliefert werden (Siehe Kapitel \ref{TP1} und
+Kapitel \ref{TP2}). Dieser Teilprozess wird in Abbildung \ref{Auslierferung} visualisiert.
 \begin{figure}
 \includegraphics[scale=0.3]{auslieferung.jpeg}
 \caption{Teilprozess:
@@ -74,11 +74,11 @@ gestaltet werden könnten. Im Workflow des ersten Teilprozesses (siehe Kapitel
 eine Änderungen des Arbeitsschrittes nicht direkt auf die Effizienz dieses
 Arbeitsschittes auswirken würde, sondern indirekt die Effizienz
 eines anderen Arbeitsschrittes steigert.} durch \emph{Xtext} nicht möglich, da
-hier noch keine Implementierung vorgenommen wird. Allerdings könnte eine gut lesbare Sprache, die für die Beschreibung der Pflichtprüfungen eingesetzt werden, die auch für der Beschreibung der Prüfung im Angebot zur Anwendung kommen kann. Somit könnte die Definition der
-Prüfungskonfiguration vom Angebot einfach übernommen werden und müsste nicht in
-eine andere Syntax überführt werden. Insofern würde die Veränderung des
-Arbeitschrittes \emph{Angebot mit neuer Pflichtprüfung erstellen} zu einer Zeit-
-und Kosteneinsparung beim Arbeitsschritt \emph{Prüfungskonfiguration definieren}
+hier noch keine Implementierung vorgenommen wird. Allerdings könnte eine gut
+lesbare Sprache welche für die Beschreibung der Pflichtprüfungen eingesetzt
+wird auch für die Beschreibung der Prüfung im Angebot zur Anwendung kommen.
+Somit könnte die Definition der Prüfungskonfiguration vom Angebot einfach
+übernommen werden und müsste nicht in eine andere Syntax überführt werden. Insofern würde die Veränderung des Arbeitschrittes \emph{Angebot mit neuer Pflichtprüfung erstellen} zu einer Zeit- und Kosteneinsparung beim Arbeitsschritt \emph{Prüfungskonfiguration definieren}
 im Workflow des Teilprozesses aus Kapitel \ref{TP2} führen.\\
 Im Workflow des zweiten Teilprozesses (siehe Kapitel \ref{TP2}) kann
 \emph{Xtext} dabei helfen, die Prüfungskonfiguration zu definieren. Das
@@ -87,5 +87,5 @@ Nutzung von \emph{Xtext}.\\
 Im Workflow des dritten Teilprozesses (siehe Kapitel \ref{TP3}) wäre es durch
 den Einsatz von \emph{Xtext} möglich, die Fehlersuche zu vereinfachen. Nicht nur bei der deg könnten
 Fehler in der Prüfungskonfiguration schneller erkannt werden. Auch der Kunde
-kann durch die Nutzung vo \emph{Xtext} seine Fehlersuche ausweiten. Im
+kann durch die Nutzung von \emph{Xtext} seine Fehlersuche ausweiten. Im
 späteren Verlauf wird auch darauf Bezug genommen.
