@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.deg.de/eler/ft/vp/Dsl" 
+       class = "de.deg.eler.ft.vp.dsl.DslPackage"
+       genModel = "model/generated/Dsl.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>

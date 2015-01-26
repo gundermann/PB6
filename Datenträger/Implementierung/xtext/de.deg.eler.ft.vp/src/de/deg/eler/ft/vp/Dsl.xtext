@@ -1,0 +1,354 @@
+grammar de.deg.eler.ft.vp.Dsl with org.eclipse.xtext.common.Terminals
+
+generate dsl "http://www.deg.de/eler/ft/vp/Dsl"
+
+
+Konfiguration:
+	usedids+=UsedIDs
+	(spezantragszuweisung+=SPEZ_ANTRAGSZUWEISUNG)*
+	(antragszuweisung+=Zuweisung)*
+	(vwkpkonfigurationfueraktion+=vwkpaktionkonfiguraktion |
+	pruefungsaktion+=PRUEFUNGSAKTION |
+	pruefungsklassenname+=PRUEFUNGSKLASSENNAME |
+	pruefungskurzbezeichnung+=PRUEFUNGSKURZTEXT |
+	pruefungslangtext+=PRUEFUNGSLANGTEXT |
+	pruefungswirkung+=PRUEFUNGSWIRKUNG |
+	pruefungsichtbarkeit+=PRUEFUNGSICHTBARKEIT)*;
+
+PRUEFUNGSICHTBARKEIT:
+	'PruefungSichtbar.' PRUEFUNG ' =' (' ')*
+;
+
+terminal SL_COMMENT:
+	'#' !('\n' | '\r')* ('\r'? '\n')?;
+
+vwkpaktionkonfiguraktion:
+	'VWKPKonfiguration.' VWKPTYP '.Aktion.' PRUEFUNG ' = ' AKTION;
+
+VWKPTYP:
+	'Automatisch' | 'Manuell';
+
+SPEZ_ANTRAGSZUWEISUNG:
+	INT ' = ' (PRUEFUNG ',')* PRUEFUNG;
+
+PRUEFUNGSLANGTEXT:
+	'PruefungLangtext.' PRUEFUNG ' = ' STRING;
+
+PRUEFUNGSKURZTEXT:
+	'PruefungKurzbezeichnung.' PRUEFUNG ' = ' STRING;
+
+PRUEFUNGSKLASSENNAME:
+	'PruefungKlassenname.' PRUEFUNG ' = ' KLASSE;
+
+PRUEFUNGSAKTION:
+	'PruefungAktion.' AKTIONSID ' = ' AKTION;
+
+AKTIONSID:
+	PRUEFUNG '.' INT;
+
+PRUEFUNGSWIRKUNG:
+	'PruefungWirkung.' WIRKUNGSID ' = ' WIRKUNG;
+
+WIRKUNGSID:
+	PRUEFUNG '.' INT;
+
+Zuweisung:
+	'DvAntragsArt.' ANTRAGSART ' = ' (PRUEFUNG ',')* PRUEFUNG;
+
+UsedIDs:
+	'CodesAlle = ' (PRUEFUNG ',')* PRUEFUNG;
+
+PRUEFUNG:
+	INT;
+
+WIRKUNG:
+	'VERHINDERT_AKTION' | 'OHNE' | 'WARNUNG';
+
+ANTRAGSART:
+	'AUSZANTRAG' | 'ERWANTRAG' | 'NEUANTRAG' | 'VERLANTRAG';
+
+AKTION:
+	'BerechnenUndPruefen' | 'DokumentBearbeitungBeginnen' | 'Zurueckziehen' | 'NachberechnungStornieren' |
+	'ZurueckziehenZuruecknehmen' | 'AntragFreigeben' |
+	'AntragFreigabeZurueck' | 'DokumentBearbeitungBeenden' | 'AntragBewilligen' | 'AntragAblehnen' |
+	'AntragZahlungAnweisen' | 'AntragEntscheidungZurueck' |
+	'AntragNeuBearbeiten' | 'AntragWidersprechen' | 'AntragWiderspruchAblZurueck' | 'AntragWiderspruchZurueck' |
+	'AntragWiderspruchAblehnen' | 'AntragWiderspruchZulassen' |
+	'AntragWiderspruchZulZurueck' | 'AntragWiderspruchStattgeben';
+
+KLASSE:
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.AbstractAumPruefalgorithmusAusRechenschritt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.AbstractAumPruefalgorithmusBagatellbetragTeilmassnahmen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PA4AugenPrinzip' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAblehnungsgruendeVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbsichtlicheFalschangabenArt17Abs1' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbsichtlicheFalschangabenBezugVerstoesseVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbsichtlichFalscheAngaben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbsichtlichFalscheAngabenStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbsichtlichFalschGemachteUnregelmaessigkeit' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbtretungenInZahlungVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbzuegeErhoehung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAbzugNichtfoerderfAnteileGefuelltBeiUnternehmensformWaldgemeinschaft'
+	|
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAllgemeineAngaben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAllgemeineAngabenBeendetOhneAenderungsblatt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAltverpflichtungUeberschritten' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenAUM' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenBeendetStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenBeendetVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenErsterfassungBeendetAJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenInBearbeitung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageFlaechenInBearbeitungStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnlageTierhaltung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilBluehflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilGetreide' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilGetreideAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilGruenland' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilHauptfruchtartenMax30Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilHauptfruchtartenMax30ProzentAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilHauptfruchtartenMin10Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilHauptfruchtartenMin10ProzentAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilKkLeguminosenAL5Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilLeguminosen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnteilLeguminosenAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragseingang' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragseingangNichtNachAusschlussTermin' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragseingangStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragsflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragsteller' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragstellerKeineJuristischePerson' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragstermin' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragsterminNichtVerfristet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragVJBewilligt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragVJNichtAbgelehnt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAntragZurueckziehen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnzahlHauptfruchtartenAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnzahlHauptfruchtartenInklusiveLeguminosen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnzahlStreuobstBaeumeNichtGroesserAls100ProHa' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAnzahlStreuobstBaeumeNichtKleinerAls30' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFlaechenAbgleichAJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFlaechenAbgleichAJStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFlaechenAbgleichVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFlaechenmappe' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFlaechenmappeAktuellUndDurchgefuehrt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumFNNichtUnvollstaendigUndHatKeinAnederungsBlatt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumKuliZuMaAZLAktuellUndBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumKuliZuMaUZWAktuellUndBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumTierbestandsnachweis' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAumTierbestandsnachweisBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAusbringungstechnik' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAusgleichsleistungenInAnderenBLUndFlaecheNichtGefuellt'
+	|
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAAusschluss' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragAuszahlung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragBerechnung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragBerechnungBeruecksichtigungHalbeZahlung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragBerechnungEVP_RL2002' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragBerechnungEVP_RL2007' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragBerechnungUeberGesamteLaufzeit' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragNeuAntrag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABagatellbetragRueckforderung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABankverbindung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABankverbindungStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragteFlaecheKleiner80Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragtGLGleichGesamtGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragtMindestens5ProzAckerflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragtNichtKleiner10ProzAckerflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragtNichtKleiner2ha' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABeantragtNichtKleiner5ProzAckerflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABesatzAusHITUnterBeruecksichtigungGruenland' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABesatzRgvDglMinBeantragtFestgestelltGrEq0_2' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABesatzRgvDglMinBeantragtFestgestelltGrEq0_3' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABesatzZwischen0_2Und1_0RgvProHaHFFInklBestNCAusHIT' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABescheidInAktuellerBerechnung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABestaetigungsVermerk' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PABewilligterNAImEAJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PACCGesamtbewertungsmappeAktuell' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PACCGesamtbewertungsmappeAktuellUndBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PADatumEingangGroesserAntrag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PADifferenzBewilligtVJUndBeantragtGroesserBagatellbetrag'
+	|
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PADifferenzVerpflichtungsflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PADifferenzVerpflichtungsflaecheWiederholt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungCC' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungCCV' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungCCVImVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungUmfangDGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungUmfangDGLSchwellwert' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEinhaltungUmfangVerpflichtungsflaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAEntscheidungenBescheidart' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErstantragsjahr' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungKleiner10bzw2haOdGroesser50ProzentVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungKleiner10odGroesser50ProzentVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungKleinerGleich50Proz' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungKleinerGleich50ProzOder2Ha' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungLE50ProzentVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAErweiterungsflaecheVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAExtensiveBewirtschaftungGLGleichGesamtGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFahrlaessigFalscheAngaben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFahrlaessigFalscheAngabenStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFalschangabenArt16Abs5' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFalschangabenArt16Abs6' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFalschangabenArt16Abs6inAnderemFP' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFalschangabenArt18Abs3' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFalschGemachteAngaben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFlaecheFoerderfaehigGroesserNull' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFlaecheFoerdergebietGroesserGleich3Hektar' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFlaecheM141Mindestens5ProzentAFAusEaj' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFlaecheM14Mindestens5ProzentAFAusEaj' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAFlaecheStreuobstwiesen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGebuehrenrechnung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGesamtabweichung30Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGesamtabweichung50Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGesamtrueckforderung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGesamtsanktionierung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGLAnteilNichtZuGross' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGLAnteilNichtZuKlein' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGrfImAA' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGrobFahrlaessigeGemachteAngaben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAGuellemenge' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAHofuebergabe' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAImkerBestaetigungVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAImkerVereinbarungVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKapitalbeteiligungOeffentlHandGroesser25Proz' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinAntragVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinBescheidInAktuellerBerechnung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinDungAufnahmeOderAbgabe' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineAblehnungsgruendeVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineAblehnungsgruendeVorhandenTm' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineParalleBeantragungM5UndM6' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinePheromonGemeinschaft' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformAktiengesellschaft' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformAnstaltDesOeffentlRechts' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformGmbH' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformJuristischePersonOeffentlRecht' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformKoerperschaftDesOeffentlichenRechts' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformOeffentlRechtlStiftung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformPrivatRechtlStiftung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformSonstigeJuristischePersonOeffentlRecht' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformSonstigeJuristischePersonPrivatRecht' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRechtsformSonstigeNatuerlichePerson' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineRelevantenEntscheidungenOffen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineUnternehmensformAnerkannteWeidegemeinschaft' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineUnternehmensformEinzelantragstellerMeka' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineUnternehmensformPheromongemeinschaft' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeineUnternehmensformWaldgemeinschaft' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinFC104anBindungVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinGLAusErzeugungGenommenNutzung592' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinKlaerschlammAusgebracht' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinWiderspruchImPEB' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKeinWiderspruchImPEB2' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKombinierteGLAntraege' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKontrollkostenzuschussMitND2Teilmassnahme' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKontrollprotokoll' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKontrollvertrag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKulturgruppenAbweichung20Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKulturgruppenAbweichung30Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKulturgruppenAbweichung50Prozent' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKulturgruppenAbweichung50ProzentB1610' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAKulturgruppenAbweichung50ProzentVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PALaborbeanstandungenLiegenNichtVor' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PALandwirt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMantelbogen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMantelbogenStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaschinelleBerechnungVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz1_4RgvProHaHFF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz1_4RgvProHaHFFAusHIT' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz1_4RgvProHaHFFAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz2GveProHaLNF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz2GveProHaLNF2010' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz2GveProHaLNFAusHIT' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMaximalbesatz2GveProHaLNFAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMindestFlaeche' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMindestumfangWinterbegruenung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_2RgvProHaHFF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_2RgvProHaHFFAusHIT' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_3GveProHaLNF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_3RgvProHaGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_3RgvProHaHFF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_3RgvProHaHFFAusHIT' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_3RgvProHaHFFAusnahmeArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_5RgvProHaGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMinimalbesatz0_6GVEProHaFF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAMittelverwaltung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PANachOeffnenBerechnet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PANichtAlleChecksWurdenBearbeitet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PANichtZuWenigAckerfutterAngebaut' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PANurNachberechnungStornierbar' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAParallelBewilligterNABeiEajGleichAj' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAParallelerAAEntschieden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAParallelerAntragFP773' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAParallelerAntragZuFP774' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAPebVollstaendig' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAPebVollstaendigLZJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAQualitaetssicherung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAQualitaetssicherungFlaechenmappeVj' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAQualitaetssicherungVj' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAReferenzflaechenAbgleich' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAReferenzflaechenAbgleichBeendetVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAReferenzflaechenAbgleichDurchgefuehrtVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARentenempfaenger' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARentenempfaengerAlsEinzelunternehmer' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARestlaufzeit' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARestlaufzeitEinJahr' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARestlaufzeitVNS' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARiaVJVokAJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARiaVok' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARiaVokCc' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARiaVokStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARiaVokVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARueckforderungen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PARueckforderungenOderNullzahlung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASGAbgleich' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASonstFeststellungenAbsichtlUnregelmaessigkeiten' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASonstigeFeststellungen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASonstigeFeststellungenStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASonstigeFeststellungenVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PASperrvermerkNichtVergeben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAStammdatenAktuell' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAStichtagHelper' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PATeilmassnahmeND1UndND2Beantragt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PATierbesatzGesamt' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PATierbestandEingehaltenRgvProHaHFF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PATierbestandEingehaltenRgvProHaHFFundGveProHaLF' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PATierbestandEingehaltenRgvProHaHFFZusNCs' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUmwandlungALInGL' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnternehmenAusserhalbDerEU' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnternehmenOhneSchafeZiegenMitVertragVereinbarung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnternehmenssitzInBw' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnterschiedBerechneteUndManuelleVerpflFlFJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnterschreitungTierbestzDurchFeststellung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnzulaessigeNC' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnzulaessigeNcVNS' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnzulaessigeVerringerungVerpflFlaecheAckerfutter' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAUnzulaessigeVerringerungVerpflFlaecheWinterbegruenung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerlaengerungsdokumentimVJVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerlaengerungsdokumentVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerstossArt18' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerstossArt18NurArt18Beanstandungen' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerstossArt18NurArt18BeanstandungenVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerstossArt18VJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVerstossArt18VJFuerMindEineBindung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVertragsNrFuerAlleFlaechenVergeben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVertragsnummer' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVertragVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVeterinaerBestaetigungVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVOKBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVOKBeendetStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVOKBeendetVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVOKCCBeendet' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVokNichtVerweigert' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVWKPEnthaeltBenutzerdefPruefkonf' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVWKReferenzflaechenAbgleich' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVwkZIDAntragsteller' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAVwkZIDAntragstellerStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAWeidetagebuchImPebVorhanden' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAWiderspruchInVorherigerBerechnung' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAZFK' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAZFKStichtag' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.pruefungen.PAZFKVJ' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PASperrvermerkNichtVergeben' |
+	'DE.data_experts.profi.profilcs.antrag.aum.allg.business.pruefungen.PAAumKuliZuMaAZLAktuellUndBeendet';
+
+
