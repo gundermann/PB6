@@ -60,3 +60,25 @@
 \linespread{1.5}
 
 \bibliographystyle{geralpha}
+
+%----------------------------------------------------------------------------------
+% \vcite	
+%				{ source }
+%				{ page }
+%
+%Direktes Zitat
+\newcommand{\simplevcite}[1]
+{
+(vgl. \cite{#1})
+}
+
+%----------------------------------------------------------------------------------
+% \vcite	
+%				{ source }
+%				{ page }
+%
+%Direktes Zitat
+\newcommand{\vcite}[2]
+{
+(vgl. \cite[S.#2]{#1})
+}
