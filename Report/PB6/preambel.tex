@@ -13,6 +13,9 @@
 \usepackage{bibgerm}
 \usepackage{palatino}
 \usepackage{chngpage}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{float}
 \renewcommand{\floatpagefraction}{0.85}
 
 \usepackage{fancyhdr}
@@ -82,3 +85,15 @@
 {
 (vgl. \cite[S.#2]{#1})
 }
+
+\newcommand{\myHugeFigure}[3]
+{
+\begin{sidewaysfigure}[H]
+	
+		\includegraphics[width= \textheight]{#1}
+		\caption{#2}
+		\label{#3}
+	
+\end{sidewaysfigure}
+}
+
